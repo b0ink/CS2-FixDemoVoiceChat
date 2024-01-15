@@ -22,7 +22,7 @@ public class FixDemoVoiceChat : BasePlugin
 
     void FixHltvVoiceChat()
     {
-        var HLTV = Utilities.GetPlayers().Where(p => p.IsHLTV).First();
+        var HLTV = Utilities.GetPlayers().Where(p => p.IsHLTV).FirstOrDefault();
 
         if (HLTV != null && HLTV.IsValid)
         {
