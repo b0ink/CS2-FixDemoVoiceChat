@@ -6,7 +6,7 @@ This should work with any gamemode/config as the player's voice flags are not ch
 
 ## Requirements
 - Metamod
-- CounterStrikeSharp (>v143)
+- CounterStrikeSharp (>v244) (.NET 8)
 
 ## Installation
 - Download the [latest release](https://github.com/b0ink/CS2-FixDemoVoiceChat/releases)
@@ -33,4 +33,4 @@ Going by the descriptions of these convars, you need to enable each bit for the 
 With this all in mind, I would expect that by setting both of these convars to the decimal value of -1, you should be able to hear everyone.
 
 > If you want to selectively hear players, you can use a 32-bit two's complement integer calculator such as this one: https://www.binaryconvert.com/convert_signed_int.html?hexadecimal=0
-> For this calculator in particular, just enable squares at the bottom corresponding to the player slots you want to hear, then click to "convert to decimal", and then u
+> For this calculator in particular, just enable squares at the bottom corresponding to the player slots you want to hear, then click to "convert to decimal", and then use the decimal representation to set the corresponding convar in the game client.
