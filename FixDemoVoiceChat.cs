@@ -6,7 +6,7 @@ public class FixDemoVoiceChat : BasePlugin
 {
     public override string ModuleName => "Fix Voice Chat in Demo Recordings";
     public override string ModuleAuthor => "BOINK";
-    public override string ModuleVersion => "2.0.0";
+    public override string ModuleVersion => "3.0.0";
 
     public override void Load(bool hotReload)
     {
