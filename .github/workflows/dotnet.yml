@@ -4,48 +4,46 @@
 name: .NET
 
 on:
-  push:
-    branches: [ "main" ]
+    push:
+        branches: ["main"]
 
 env:
-  VERSION: 2.0.0
-  BUILD_NUMBER: ${{ github.run_number }}
-  PROJECT_PATH: "FixDemoVoiceChat.csproj"
-  PROJECT_NAME: "FixDemoVoiceChat"
-  OUTPUT_PATH: "./FixDemoVoiceChat"
-
+    VERSION: 3.0.0
+    PROJECT_PATH: "FixDemoVoiceChat.csproj"
+    PROJECT_NAME: "FixDemoVoiceChat"
+    OUTPUT_PATH: "./FixDemoVoiceChat"
 
 jobs:
-  build:
-    permissions: write-all
-    runs-on: ubuntu-latest
+    build:
+        permissions: write-all
+        runs-on: ubuntu-latest
 
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v3
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: 8.0.x
-    - name: Restore
-      run: dotnet restore
+            - name: Setup .NET
+              uses: actions/setup-dotnet@v3
+              with:
+                  dotnet-version: 8.0.x
+            - name: Restore
+              run: dotnet restore
 
-    - name: Build
-      run: dotnet build ${{ env.PROJECT_PATH }} -c Release -o ${{ env.OUTPUT_PATH }} -p:Version=${{ env.VERSION }} --version-suffix ${{ env.BUILD_NUMBER }}
+            - name: Build
+              run: dotnet build ${{ env.PROJECT_PATH }} -c Release -o ${{ env.OUTPUT_PATH }} -p:Version=${{ env.VERSION }} --version-suffix ${{ env.VERSION }}
 
-    - name: Zip
-      uses: thedoctor0/zip-release@0.7.5
-      with:
-        type: 'zip'
-        filename: '${{ env.PROJECT_NAME }}-${{ env.VERSION }}.${{ env.BUILD_NUMBER }}.zip'
-        path: ${{ env.OUTPUT_PATH }}
+            - name: Zip
+              uses: thedoctor0/zip-release@0.7.5
+              with:
+                  type: "zip"
+                  filename: "${{ env.PROJECT_NAME }}-${{ env.VERSION }}.zip"
+                  path: ${{ env.OUTPUT_PATH }}
 
-    - name: Release
-      uses: ncipollo/release-action@v1.12.0
-      with:
-        artifacts: ${{ env.PROJECT_NAME }}-${{ env.VERSION }}.${{ env.BUILD_NUMBER }}.zip
-        name: "Version ${{ env.VERSION }}.${{ env.BUILD_NUMBER }}"
-        tag: "v${{ env.VERSION }}.${{ env.BUILD_NUMBER }}"
-        body: |
-          Place the FixDemoVoiceChat folder in game/csgo/addons/counterstrikesharp/plugins/
+            - name: Release
+              uses: ncipollo/release-action@v1.12.0
+              with:
+                  artifacts: ${{ env.PROJECT_NAME }}-${{ env.VERSION }}.zip
+                  name: "Version ${{ env.VERSION }}"
+                  tag: "v${{ env.VERSION }}"
+                  body: |
+                      Place the FixDemoVoiceChat folder in game/csgo/addons/counterstrikesharp/plugins/
